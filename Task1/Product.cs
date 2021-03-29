@@ -14,16 +14,6 @@ namespace Task1
 
         public double Price { get; }
 
-        public override bool Equals(object obj)
-        {
-            if (obj is Product product)
-            {
-                return this.Equals(product);
-            }
-
-            return false;
-        }
-
         public bool Equals(Product other)
         {
             if (other is null)
@@ -34,6 +24,18 @@ namespace Task1
             return string.CompareOrdinal(this.Name, other.Name) == 0 && this.Price == other.Price;
         }
 
+        ///<inheritdoc/>
+        public override bool Equals(object obj)
+        {
+            if (obj is Product product)
+            {
+                return this.Equals(product);
+            }
+
+            return false;
+        }
+
+        ///<inheritdoc/>
         public override int GetHashCode() => HashCode.Combine(this.Name, this.Price);
     }
 }
